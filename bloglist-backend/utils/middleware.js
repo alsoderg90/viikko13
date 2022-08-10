@@ -1,10 +1,19 @@
 /* eslint-disable no-unused-vars */
 const { response } = require('express')
-const app = require('../app')
+const app = require('../index')
 
 const errorHandler = (error, request, response, next) => {
+	console.log(error, error.name, "moasdasdas")
 
-  if (error.name === 'ValidationError') {
+  if (error.name === 'SyntaxError') {
+    return response.status(400).json({ error: error.message })
+  }
+
+  else if (error.name === 'SequelizeValidationError') {
+    return response.status(400).json({ error: "ASD" })
+  }
+
+  else if (error.name === 'ValidationError') {
     return response.status(400).json({ error:error.message })
   }
   else if (error.name === 'JsonWebTokenError') {

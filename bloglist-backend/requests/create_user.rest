@@ -4,5 +4,5 @@ Content-Type: application/json
 {
     "username": "testaaja",
     "name"    : "testaaja",
-    "password": "salasana"    
+    "password": "salainen"    
 }

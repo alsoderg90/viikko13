@@ -1,7 +1,11 @@
 const jwt = require('jsonwebtoken')
 const blogsRouter = require('express').Router()
-const config = require('../utils/config')
 const Blog = require('../models/blog')
+
+const blogFinder = async (req, res, next) => { 
+	req.blog = await Blog.findByPk(req.params.id)  
+	next()	
+}
 
 blogsRouter.get('/', async (req, res) => {
 	const blogs = await Blog.findAll()
@@ -9,32 +13,32 @@ blogsRouter.get('/', async (req, res) => {
 })
 
 blogsRouter.post('/', async (req, res) => {
-	try {
-	console.log(req.body)
 	const blog = await Blog.create(req.body)
-	res.json(blog)
-	} catch(error) {
-		return res.status(400).json({ error })
-	}
+	res.status(204).end()
 })
 
-blogsRouter.get('/:id', async (req, res) => {
-	const blog = await Blog.findByPk(req.params.id)
-	if (blog) {
-	  res.json(blog)
+blogsRouter.get('/:id', blogFinder, async (req, res) => {
+	if (req.blog) {
+	  res.json(req.blog)
 	} else {
 	  res.status(404).end()
 	}
 })
 
-blogsRouter.delete('/:id', async (req, res) => {
-	const blog = await Blog.destroy({where: {id: req.params.id}})
-	if (blog) {
-	  res.json(blog)
+blogsRouter.delete('/:id', blogFinder, async (req, res) => {
+	if (req.blog) {
+	  await req.blog.destroy()
+	  res.status(204).end()
 	} else {
 	  res.status(404).end()
 	}
 })
+
+blogsRouter.put('/:id', blogFinder, async (req, res) => {
+	  req.blog.likes = req.body.likes
+	  await req.blog.save()
+	  res.status(204).end()
+  })
 
 
 module.exports = blogsRouter
