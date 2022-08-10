@@ -1,10 +1,10 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RhYWphQGdtYWlsLmZpIiwiaWQiOjIsImlhdCI6MTY2MDE1MDQ4N30.4C2CABLeDYVldoM2FKi0OKaWbuvbI-Pzeg-YStAemrw
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RhYWphQGdtYWlsLmZpIiwiaWQiOjEsImlhdCI6MTY2MDE2NTIzM30.XssRd9pTY0qysZWf0dsc9J6ADA5zgnDh6PpR9aA7NSM
 
 {
-    "title": "joooo",
-    "author": "testaaja", 
+    "title": "joooo 2",
+    "author": "testaaja 2", 
     "url": "www.fdfsk.coml",
-    "likes": 5
+    "likes": 50
 }
