@@ -3,8 +3,8 @@ Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RhYWphQGdtYWlsLmZpIiwiaWQiOjIsImlhdCI6MTY2MDE1MDQ4N30.4C2CABLeDYVldoM2FKi0OKaWbuvbI-Pzeg-YStAemrw
 
 {
-    "title": "Toimiikohan 1",
-    "author": "Edsger W. Dijkstra", 
+    "title": "joooo",
+    "author": "testaaja", 
     "url": "www.fdfsk.coml",
     "likes": 5
 }

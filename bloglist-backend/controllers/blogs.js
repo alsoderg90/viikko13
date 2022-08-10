@@ -3,6 +3,7 @@ const blogsRouter = require('express').Router()
 const logger = require('../utils/logger')
 const Blog = require('../models/blog')
 const User = require('../models/user')
+const { Op } = require('sequelize')
 const { SECRET } = require('../utils/config')
 
 const tokenExtractor = (req, res, next) => {
@@ -32,8 +33,21 @@ blogsRouter.get('/', async (req, res) => {
 		include: {
 			model: User,
 			attributes: ['name']
-		    }  
-		})
+		    },
+		where: req.query.search ?
+		{
+			[Op.or]: [{ 
+			  title: {
+				[Op.iLike]: req.query.search ? `%${req.query.search}` : ''
+			  }
+			},{ 
+			  author: {
+			  	[Op.iLike]: req.query.search ? `%${req.query.search}` : ''
+			  }
+			}]
+		} : {},
+		order: [['likes', 'DESC']]  
+	})
 	res.json(blogs)
 })
 
